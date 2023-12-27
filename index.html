@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+</head>
+<body>
+  <textarea id="code" rows="10"></textarea>
+  <button onclick="runCode()">Executar Código</button>
+
+  <script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      mode: "javascript"
+    });
+
+    window.runCode = function() {
+      var code = editor.getValue();
+      var result = eval(code);
+      alert(result);
+    };
+  </script>
+</body>
+</html>
+``` 
