@@ -1,27 +1,16 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="login.js"></script>
 </head>
 <body>
-  <textarea id="code" rows="10"></textarea>
-  <button onclick="runCode()">Executar Código</button>
-
-  <script>
-    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-      lineNumbers: true,
-      mode: "javascript"
-    });
-
-    window.runCode = function() {
-      var code = editor.getValue();
-      var result = eval(code);
-      alert(result);
-    };
-  </script>
+    <form id="loginForm">
+        <input type="email" id="emailInput" placeholder="Email" required><br>
+        <input type="password" id="passwordInput" placeholder="Senha" required><br>
+        <input type="submit" value="Entrar">
+    </form>
+    <div id="message"></div>
 </body>
 </html>
-``` 
