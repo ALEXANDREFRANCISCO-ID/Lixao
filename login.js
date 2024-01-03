@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    var emails = ["email1@example.com", "email2@example.com"]; // Insira aqui os emails válidos
-    var codigos = ["codigo1", "codigo2"]; // Insira aqui os códigos correspondentes
+    var emails = ["alexandrefrancisco01998@gmail.com", "email2@example.com"]; // Insira aqui os emails válidos
+    var codigos = ["849431020", "codigo2"]; // Insira aqui os códigos correspondentes
 
     $("#loginForm").submit(function(event) {
         event.preventDefault();
