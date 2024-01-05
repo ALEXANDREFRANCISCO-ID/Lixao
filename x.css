@@ -10,9 +10,9 @@
             Padding:12px;
             Margin:10px;
             Min-height:400px;
-            Border:5px solid ;
+            Border:5px;
             Border-radius:10px;
-         Border-color:#ffb380;
+            Border-color:blue;
         }
         Input{
             
