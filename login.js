@@ -1,29 +1,29 @@
-// Lista de emails e códigos armazenados
-const storedEmails = ['email1@example.com', 'email2@example.com'];
-const storedCodes = ['code123', 'code456'];
+// Emails e seus códigos
+const emails = {
+  "email1@example.com": "codigo1",
+  "email2@example.com": "codigo2",
+  //...
+  "email20@example.com": "codigo20"
+};
 
-// Função para verificar o login
+// Função de login
 function login(event) {
   event.preventDefault();
 
-  const emailInput = document.getElementById('email');
-  const codeInput = document.getElementById('code');
-  const errorMessage = document.getElementById('errorMessage');
+  // Obter os valores de email e código
+  const email = document.getElementById("emailInput").value;
+  const code = document.getElementById("codeInput").value;
 
-  const email = emailInput.value;
-  const code = codeInput.value;
-
-  // Verifica se o email e o código estão armazenados
-  const index = storedEmails.indexOf(email);
-  if (index !== -1 && storedCodes[index] === code) {
-    // Login bem-sucedido, redireciona para a página principal
-    window.location.href = 'pagina_principal.html';
+  // Verificar se o email existe e se o código corresponde
+  if (emails.hasOwnProperty(email) && emails[email] === code) {
+    // Redirecionar para a página principal
+    window.location.href = "pagina_principal.html";
   } else {
-    // Login inválido, exibe mensagem de erro
-    errorMessage.textContent = 'Email ou código inválido.';
+    // Exibir mensagem de erro
+    alert("Email ou código inválido");
   }
 }
 
-// Adiciona o evento de submit ao formulário
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', login);
+// Adicionar o evento de submit ao formulário
+const form = document.getElementById("loginForm");
+form.addEventListener("submit", login);
