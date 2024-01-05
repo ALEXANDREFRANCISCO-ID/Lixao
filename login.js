@@ -1,21 +1,29 @@
-$(document).ready(function() {
-    var emails = ["alexandrefrancisco01998@gmail.com", "amarcalo21@gmail.com", "issasambo123@gmail.com", "njmuleia2024@gmail.com" ]; // Insira aqui os emails válidos
-    var codigos = ["849431020", "03012024", "150996","njmuleia2024" ]; // Insira aqui os códigos correspondentes
+// Lista de emails e códigos armazenados
+const storedEmails = ['email1@example.com', 'email2@example.com'];
+const storedCodes = ['code123', 'code456'];
 
-    $("#loginForm").submit(function(event) {
-        event.preventDefault();
-        var email = $("#emailInput").val();
-        var senha = $("#passwordInput").val();
+// Função para verificar o login
+function login(event) {
+  event.preventDefault();
 
-        // Verifica se o email e a senha correspondem
-        var index = emails.indexOf(email);
-        if (index !== -1 && codigos[index] === senha) {
-            // Redirecionar para a página principal
-            window.location.href = "pagina_principal.html";
-        } else {
-            // Exibir mensagem de erro
-            $("#message").text("Email ou senha incorretos");
-        }
-    });
-});
- 
+  const emailInput = document.getElementById('email');
+  const codeInput = document.getElementById('code');
+  const errorMessage = document.getElementById('errorMessage');
+
+  const email = emailInput.value;
+  const code = codeInput.value;
+
+  // Verifica se o email e o código estão armazenados
+  const index = storedEmails.indexOf(email);
+  if (index !== -1 && storedCodes[index] === code) {
+    // Login bem-sucedido, redireciona para a página principal
+    window.location.href = 'pagina_principal.html';
+  } else {
+    // Login inválido, exibe mensagem de erro
+    errorMessage.textContent = 'Email ou código inválido.';
+  }
+}
+
+// Adiciona o evento de submit ao formulário
+const loginForm = document.getElementById('loginForm');
+loginForm.addEventListener('submit', login);
