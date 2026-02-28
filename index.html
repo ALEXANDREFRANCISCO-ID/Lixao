@@ -1,39 +1,695 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-  <title>Sistema de Login</title>
- <link rel="stylesheet" type="text/css" href="x.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Alexandre Francisco — Programador</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink:     #0D0D0D;
+      --paper:   #F5F2EC;
+      --accent:  #C94B2C;
+      --muted:   #7A7369;
+      --line:    #D9D4CB;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── Tipografia ── */
+    .serif      { font-family: 'DM Serif Display', serif; }
+    .mono       { font-family: 'DM Mono', monospace; }
+    .accent-txt { color: var(--accent); }
+    .muted      { color: var(--muted); }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 2rem 4rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 1.0;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.85rem 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .hero-cta svg { transition: transform 0.2s; }
+    .hero-cta:hover svg { transform: translateX(4px); }
+
+    .hero-flag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-number {
+      position: absolute;
+      right: 4rem;
+      bottom: 4rem;
+      font-family: 'DM Serif Display', serif;
+      font-size: 12rem;
+      line-height: 1;
+      color: var(--line);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ── Sobre ── */
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+      padding: 6rem 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4rem;
+      color: var(--line);
+      line-height: 1;
+    }
+
+    .sobre-text {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .sobre-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .sobre-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Skills ── */
+    .skills-section {
+      padding: 6rem 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skills-header {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .skills-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+    }
+
+    .skill-group {
+      margin-bottom: 3rem;
+    }
+
+    .skill-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── Projectos ── */
+    .projects-section {
+      padding: 6rem 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-list { margin-top: 4rem; }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: start;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--line);
+      transition: background 0.2s;
+    }
+
+    .project-item:last-child { border-bottom: 1px solid var(--line); }
+
+    .project-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding-top: 0.25rem;
+    }
+
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    .project-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      background: var(--ink);
+      color: var(--paper);
+      letter-spacing: 0.04em;
+    }
+
+    .project-arrow {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.2s, transform 0.2s;
+      padding-top: 0.25rem;
+    }
+
+    .project-arrow:hover {
+      color: var(--accent);
+      transform: translate(3px, -3px);
+    }
+
+    /* ── Contacto ── */
+    .contact-section {
+      padding: 8rem 2rem;
+      text-align: center;
+    }
+
+    .contact-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin-bottom: 1rem;
+    }
+
+    .contact-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-email {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    .contact-email:hover { color: var(--accent); }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .social-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover { color: var(--accent); }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .footer-loc {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .sobre-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .project-item {
+        grid-template-columns: 48px 1fr;
+      }
+
+      .project-arrow { display: none; }
+
+      .hero-number { display: none; }
+
+      .nav-links { display: none; }
+
+      .site-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  
-    <h1><span class="u1">Code</span>ATOES</h1>
-  
-  <div class="d">
-    <h2>
-      <span class="u2">L</span>ogin
-    </h2>
 
-    <form id="loginForm">
-      <input type="email" id="emailInput" placeholder="Email" required>
-      <input type="password" id="codeInput" placeholder="Código" required>
-      <button type="submit">Entrar</button>
-    </form>
+  <!-- ── Nav ── -->
+  <nav class="site-nav">
+    <a href="#" class="nav-logo">AF / DEV</a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projectos">Projectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
 
-
-
-        <p>Esqueci meu <a href="#">Codigo</a></p>
-
-    <div class="divider">
-      <div class="line"></div>
-      <div class="or">ou</div>
-      <div class="line"></div>
+  <!-- ── Hero ── -->
+  <section class="hero-section" style="position:relative; overflow:hidden;">
+    <div class="container">
+      <div class="hero-label">Programador · Moçambique</div>
+      <h1 class="hero-name">
+        Alexandre<br>Francisco
+      </h1>
+      <p class="hero-desc">
+        Construo aplicações móveis e sistemas digitais que resolvem
+        problemas reais para pessoas reais — especialmente no contexto
+        africano.
+      </p>
+      <a href="#contacto" class="hero-cta">
+        Falar comigo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <div class="hero-flag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        Maputo, Moçambique
+      </div>
     </div>
+    <div class="hero-number">01</div>
+  </section>
 
-    <p>Requisitar <a href="#">credenciais</a></p>
-  
-  </div>
-  
+  <!-- ── Sobre ── -->
+  <section id="sobre">
+    <div class="sobre-grid container">
+      <div>
+        <div class="section-label">Sobre mim</div>
+        <div class="section-number">02</div>
+      </div>
+      <div>
+        <p class="sobre-text">
+          Sou <strong>Alexandre Francisco</strong>, programador moçambicano
+          apaixonado por tecnologia que tem impacto. Desenvolvo soluções
+          Android nativas com foco em <strong>educação, gestão e produtividade</strong>
+          — ferramentas feitas para o contexto africano, por alguém que
+          o conhece por dentro.
+        </p>
+        <p class="sobre-text">
+          Acredito que o bom software começa numa compreensão profunda
+          do utilizador. O meu processo combina análise técnica rigorosa
+          com atenção ao detalhe de quem vai usar o produto no dia-a-dia.
+        </p>
+        <div class="sobre-stats">
+          <div>
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Anos de experiência</div>
+          </div>
+          <div>
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Projectos entregues</div>
+          </div>
+          <div>
+            <div class="stat-number">MZ</div>
+            <div class="stat-label">Baseado em Maputo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <div class="skills-header">
+        <div class="section-label" style="margin:0;">03</div>
+        <h2 class="skills-title">Stack técnica</h2>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <div class="skill-group">
+            <div class="skill-group-title">Mobile</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Android</span>
+              <span class="skill-tag">Kotlin</span>
+              <span class="skill-tag">Jetpack</span>
+              <span class="skill-tag">Room</span>
+              <span class="skill-tag">ViewModel</span>
+              <span class="skill-tag">Coroutines</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Backend / APIs</div>
+            <div class="skill-tags">
+              <span class="skill-tag">REST API</span>
+              <span class="skill-tag">Firebase</span>
+              <span class="skill-tag">OkHttp</span>
+              <span class="skill-tag">Retrofit</span>
+              <span class="skill-tag">JSON</span>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="skill-group">
+            <div class="skill-group-title">Integrações</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Google Cloud Vision</span>
+              <span class="skill-tag">Gemini AI</span>
+              <span class="skill-tag">ML Kit</span>
+              <span class="skill-tag">PDF Generation</span>
+              <span class="skill-tag">FileProvider</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Ferramentas</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Android Studio</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Play Store</span>
+              <span class="skill-tag">Figma</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projectos ── -->
+  <section id="projectos" class="projects-section">
+    <div class="container">
+      <div class="skills-header">
+        <div class="section-label" style="margin:0;">04</div>
+        <h2 class="skills-title">Projectos</h2>
+      </div>
+
+      <div class="project-list">
+
+        <div class="project-item">
+          <div class="project-num">001</div>
+          <div>
+            <div class="project-name">Pautaa</div>
+            <p class="project-desc">
+              Sistema de gestão escolar para Moçambique. Registo de alunos,
+              geração de pautas em PDF, importação de turmas por fotografia
+              com OCR e IA, relatórios de frequência e resultados.
+            </p>
+            <div class="project-tech">
+              <span class="tech-badge">Android</span>
+              <span class="tech-badge">Kotlin</span>
+              <span class="tech-badge">Gemini AI</span>
+              <span class="tech-badge">PDF</span>
+              <span class="tech-badge">Room</span>
+            </div>
+          </div>
+          <a href="#" class="project-arrow">↗</a>
+        </div>
+
+        <div class="project-item">
+          <div class="project-num">002</div>
+          <div>
+            <div class="project-name">OCR de Listas</div>
+            <p class="project-desc">
+              Módulo de reconhecimento óptico de listas manuscritas usando
+              Gemini Vision. Extrai nomes de alunos de fotografias com alta
+              precisão, mesmo com caligrafia difícil.
+            </p>
+            <div class="project-tech">
+              <span class="tech-badge">Gemini API</span>
+              <span class="tech-badge">ML Kit</span>
+              <span class="tech-badge">Kotlin</span>
+            </div>
+          </div>
+          <a href="#" class="project-arrow">↗</a>
+        </div>
+
+        <div class="project-item">
+          <div class="project-num">003</div>
+          <div>
+            <div class="project-name">Gerador de PDFs</div>
+            <p class="project-desc">
+              Motor de geração de documentos académicos complexos — pautas
+              A4/A3, boletins individuais, relatórios de exames — com suporte
+              ao sistema educativo moçambicano.
+            </p>
+            <div class="project-tech">
+              <span class="tech-badge">Android</span>
+              <span class="tech-badge">iText</span>
+              <span class="tech-badge">Kotlin</span>
+            </div>
+          </div>
+          <a href="#" class="project-arrow">↗</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contacto ── -->
+  <section id="contacto" class="contact-section">
+    <div class="container">
+      <p class="section-label" style="justify-content:center; display:flex;">05 — Contacto</p>
+      <h2 class="contact-title">
+        Vamos<br>trabalhar juntos
+      </h2>
+      <p class="contact-sub">Disponível para projectos freelance e colaborações.</p>
+      <a href="mailto:alexandrefrancisco@email.com" class="contact-email">
+        alexandrefrancisco@email.com
+      </a>
+      <div class="social-links">
+        <a href="#" class="social-link">GitHub</a>
+        <a href="#" class="social-link">LinkedIn</a>
+        <a href="#" class="social-link">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <span class="footer-copy">© 2026 Alexandre Francisco</span>
+    <span class="footer-loc">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+        <circle cx="12" cy="9" r="2.5"/>
+      </svg>
+      Maputo · Moçambique
+    </span>
+  </footer>
+
+</body>
+</html>
   <script src="login.js"></script>
 </body>
 </html>
