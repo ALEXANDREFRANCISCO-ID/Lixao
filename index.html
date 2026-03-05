@@ -216,7 +216,7 @@ ul.lc li{margin-bottom:3px;}
     </div>
 
     <div class="json-ind" id="jsonInd">
-      📂 Ficheiro a carregar: <code id="jsonPath"></code>
+      📂 Ficheiro: <code id="jsonPath"></code> (mesma pasta que plano.html)
     </div>
 
     <!-- ══ CONFIGURAÇÃO DE SEMANAS ══ -->
@@ -281,10 +281,10 @@ const SLUG = {
 };
 function calcJsonPath(disc, classe, trim){
   const d = SLUG[disc] || disc.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"");
-  // "3ª Classe" → "3a" | substitui ª/º por "a" antes de tudo
+  // "3ª Classe" → "3a"
   const c = classe.replace(/[ªº°]/g,"a").toLowerCase().replace(/\s*classe\s*/g,"").replace(/\s+/g,"").trim();
-  if(trim) return `programas/${d}_${c}_t${trim}.json`;
-  return `programas/${d}_${c}.json`;
+  if(trim) return `${d}_${c}_t${trim}.json`;
+  return `${d}_${c}.json`;
 }
 
 /* ── DISCIPLINAS POR CLASSE ── */
@@ -378,7 +378,7 @@ function onDisciplinaChange(){
   document.getElementById("semanasBloco").style.display="none";
   if(classe&&disc){
     const trim=document.getElementById("trimestre").value;
-    document.getElementById("jsonPath").textContent=calcJsonPath(disc,classe,trim||null);
+    document.getElementById("jsonPath").textContent=calcJsonPath(disc,classe,trim||"1");
     document.getElementById("jsonInd").style.display="flex";
   } else {
     document.getElementById("jsonInd").style.display="none";
@@ -428,12 +428,11 @@ function actualizarPreview(){
 
   // Número de semanas vem do JSON (semanas_por_trimestre)
   // Mostrar preview com base no JSON já carregado ou padrão 14/13/12
-  const path=calcJsonPath(
+  const chave=calcChave(
     document.getElementById("disciplina").value,
-    document.getElementById("classe").value,
-    trim
+    document.getElementById("classe").value
   );
-  const prog=cacheJSON[path];
+  const prog=DB[chave] && DB[chave][trim] ? DB[chave][trim] : null;
   const n=prog ? (prog.num_semanas||14) : ({"1":14,"2":13,"3":12}[trim]||14);
 
   const datas=gerarDatas(dataI,n,dias);
@@ -468,23 +467,16 @@ async function gerarPlano(){
   if(!dataValida(dataI)) return mostrarErro("⚠️ Data de início inválida. Use DD/MM (ex: 02/03).");
   esconderErro();
 
-  /* Fetch JSON */
+  /* Carregar dados da base de dados embutida */
   const path=calcJsonPath(disc,classe,trim);
-  mostrarLoading(`A carregar ${path} …`);
-  let prog;
-  try{
-    prog=cacheJSON[path]||(cacheJSON[path]=await fetch(path).then(r=>{
-      if(!r.ok) throw new Error(r.status);
-      return r.json();
-    }));
-  }catch(e){
-    esconderLoading();
-    mostrarEcraNaoEncontrado(path,disc,classe);
+  mostrarLoading(`A carregar dados …`);
+  const chave = calcChave(disc, classe);
+  const prog = DB[chave] && DB[chave][trim] ? DB[chave][trim] : null;
+  esconderLoading();
+  if(!prog){
+    mostrarEcraNaoEncontrado(path, disc, classe);
     return;
   }
-  esconderLoading();
-
-  /* Número de semanas deste trimestre — vem directamente do ficheiro */
   const nSems = prog.num_semanas || 14;
 
   /* Gerar datas para este trimestre */
@@ -497,7 +489,7 @@ async function gerarPlano(){
   if(!linhas.length)
     return mostrarErro(`Nenhum conteúdo encontrado para o ${trim}º Trimestre no ficheiro JSON.`);
 
-  renderizarPlano({ prov, dist, escola, classe, disc, trim: trimNum, prof,
+  renderizarPlano({ prov, dist, escola, classe, disc, trim: parseInt(trim), prof,
                     linhas, nSems, chSem: prog.carga_horaria_semanal||16,
                     datasGeradas: STATE_TRIMS[trim].gerado });
 }
@@ -617,25 +609,17 @@ function renderizarPlano({ prov, dist, escola, classe, disc, trim, prof,
 
 /* ── ECRÃ NÃO ENCONTRADO ── */
 function mostrarEcraNaoEncontrado(path, disc, classe){
-  // Gerar lista dos 3 ficheiros necessários
   const base = path.replace(/_t[123]\.json$/, "");
   document.getElementById("planoDoc").innerHTML=`
   <div class="aviso-nf"><div class="aviso-box">
     <h3>⚠️ Ficheiro JSON não encontrado</h3>
-    <p>O sistema procurou: <code>${path}</code><br>mas o ficheiro não existe na pasta <code>programas/</code>.</p>
-    <p style="margin-top:14px;"><b>Certifique-se que os 3 ficheiros do trimestre estão na pasta <code>programas/</code>:</b></p>
-    <ul style="margin:10px 0 0 18px;line-height:2;">
+    <p>O sistema procurou: <code>${path}</code><br>
+    Certifique-se que os seguintes ficheiros estão na <b>mesma pasta</b> que o <code>plano.html</code>:</p>
+    <ul style="margin:10px 0 0 18px;line-height:2.2;">
       <li><code>${base}_t1.json</code></li>
       <li><code>${base}_t2.json</code></li>
       <li><code>${base}_t3.json</code></li>
     </ul>
-    <p style="margin-top:14px;font-size:12px;color:#888;">
-      A estrutura de pastas deve ser:<br>
-      <code>plano.html</code><br>
-      <code>programas/${base.split("/")[1]}_t1.json</code><br>
-      <code>programas/${base.split("/")[1]}_t2.json</code><br>
-      <code>programas/${base.split("/")[1]}_t3.json</code>
-    </p>
   </div></div>`;
   document.getElementById("formCard").style.display="none";
   document.getElementById("resultado").style.display="block";
@@ -671,4 +655,3 @@ function esconderErro(){ document.getElementById("erroMsg").style.display="none"
 </script>
 </body>
 </html>
-
