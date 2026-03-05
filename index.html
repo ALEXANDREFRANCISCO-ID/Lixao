@@ -1,695 +1,673 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Alexandre Francisco — Programador</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --ink:     #0D0D0D;
-      --paper:   #F5F2EC;
-      --accent:  #C94B2C;
-      --muted:   #7A7369;
-      --line:    #D9D4CB;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
-    }
-
-    /* ── Tipografia ── */
-    .serif      { font-family: 'DM Serif Display', serif; }
-    .mono       { font-family: 'DM Mono', monospace; }
-    .accent-txt { color: var(--accent); }
-    .muted      { color: var(--muted); }
-
-    /* ── Nav ── */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--paper);
-      border-bottom: 1px solid var(--line);
-      padding: 0 2rem;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      margin: 0; padding: 0;
-    }
-
-    .nav-links a {
-      font-size: 0.82rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
-
-    /* ── Hero ── */
-    .hero-section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 6rem 2rem 4rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .hero-label::before {
-      content: '';
-      display: inline-block;
-      width: 32px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    .hero-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      line-height: 1.0;
-      color: var(--ink);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-      line-height: 1.8;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--ink);
-      color: var(--paper);
-      padding: 0.85rem 2rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .hero-cta:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .hero-cta svg { transition: transform 0.2s; }
-    .hero-cta:hover svg { transform: translateX(4px); }
-
-    .hero-flag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .hero-number {
-      position: absolute;
-      right: 4rem;
-      bottom: 4rem;
-      font-family: 'DM Serif Display', serif;
-      font-size: 12rem;
-      line-height: 1;
-      color: var(--line);
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* ── Sobre ── */
-    .sobre-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      align-items: start;
-      padding: 6rem 2rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-number {
-      font-family: 'DM Serif Display', serif;
-      font-size: 4rem;
-      color: var(--line);
-      line-height: 1;
-    }
-
-    .sobre-text {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.9;
-      margin-bottom: 1.5rem;
-    }
-
-    .sobre-text strong {
-      color: var(--ink);
-      font-weight: 500;
-    }
-
-    .sobre-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--line);
-    }
-
-    .stat-number {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.5rem;
-      color: var(--ink);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    /* ── Skills ── */
-    .skills-section {
-      padding: 6rem 2rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .skills-header {
-      display: flex;
-      align-items: baseline;
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-
-    .skills-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.5rem;
-    }
-
-    .skill-group {
-      margin-bottom: 3rem;
-    }
-
-    .skill-group-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .skill-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      padding: 0.4rem 0.9rem;
-      border: 1px solid var(--line);
-      color: var(--ink);
-      background: transparent;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .skill-tag:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* ── Projectos ── */
-    .projects-section {
-      padding: 6rem 2rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .project-list { margin-top: 4rem; }
-
-    .project-item {
-      display: grid;
-      grid-template-columns: 80px 1fr auto;
-      align-items: start;
-      gap: 2rem;
-      padding: 2rem 0;
-      border-top: 1px solid var(--line);
-      transition: background 0.2s;
-    }
-
-    .project-item:last-child { border-bottom: 1px solid var(--line); }
-
-    .project-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--muted);
-      padding-top: 0.25rem;
-    }
-
-    .project-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--ink);
-    }
-
-    .project-desc {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 0.75rem;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .tech-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      padding: 0.2rem 0.6rem;
-      background: var(--ink);
-      color: var(--paper);
-      letter-spacing: 0.04em;
-    }
-
-    .project-arrow {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: color 0.2s, transform 0.2s;
-      padding-top: 0.25rem;
-    }
-
-    .project-arrow:hover {
-      color: var(--accent);
-      transform: translate(3px, -3px);
-    }
-
-    /* ── Contacto ── */
-    .contact-section {
-      padding: 8rem 2rem;
-      text-align: center;
-    }
-
-    .contact-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      margin-bottom: 1rem;
-    }
-
-    .contact-sub {
-      color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 3rem;
-    }
-
-    .contact-email {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 2px;
-      transition: color 0.2s;
-    }
-
-    .contact-email:hover { color: var(--accent); }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 4rem;
-    }
-
-    .social-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .social-link:hover { color: var(--accent); }
-
-    /* ── Footer ── */
-    .site-footer {
-      border-top: 1px solid var(--line);
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-copy {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-    }
-
-    .footer-loc {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .sobre-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .sobre-stats {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .project-item {
-        grid-template-columns: 48px 1fr;
-      }
-
-      .project-arrow { display: none; }
-
-      .hero-number { display: none; }
-
-      .nav-links { display: none; }
-
-      .site-footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Plano Analítico — Moçambique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#1b5e3b;--verde-m:#2e7d52;--verde-claro:#e8f5ee;
+  --amarelo:#f4c400;--vermelho:#c0392b;--preto:#111;
+  --cinza-f:#f5f6f4;--cinza-b:#dde2db;--texto:#222;
+  --sombra:0 6px 28px rgba(0,0,0,.10);--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lato',sans-serif;background:var(--cinza-f);color:var(--texto);min-height:100vh;}
+
+.topo{background:var(--verde);color:#fff;border-bottom:5px solid var(--amarelo);position:relative;overflow:hidden;}
+.topo::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 18px,rgba(255,255,255,.03) 18px,rgba(255,255,255,.03) 19px);}
+.topo-inner{max-width:1080px;margin:0 auto;padding:22px 28px;display:flex;align-items:center;gap:20px;position:relative;z-index:1;}
+.bandeira{display:flex;flex-direction:column;width:7px;height:60px;border-radius:3px;overflow:hidden;flex-shrink:0;}
+.bandeira s{flex:1;text-decoration:none;}
+.b1{background:var(--vermelho);}.b2{background:#000;}.b3{background:var(--amarelo);}
+.topo h1{font-family:'Playfair Display',serif;font-size:23px;font-weight:900;line-height:1.15;}
+.topo p{font-size:12px;opacity:.65;margin-top:3px;letter-spacing:.8px;text-transform:uppercase;}
+.topo-badge{margin-left:auto;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+
+.container{max-width:1080px;margin:0 auto;padding:36px 20px;}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--sombra);overflow:hidden;margin-bottom:26px;}
+.card-head{background:linear-gradient(120deg,var(--verde),var(--verde-m));color:#fff;padding:20px 28px;}
+.card-head h2{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;}
+.card-head p{font-size:12px;opacity:.7;margin-top:3px;}
+.card-body{padding:28px;}
+.sec{font-size:10px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--verde);border-bottom:2px solid var(--amarelo);padding-bottom:6px;margin:24px 0 18px;}
+.sec:first-child{margin-top:0;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.campo{display:flex;flex-direction:column;gap:7px;}
+.campo label{font-size:11px;font-weight:700;letter-spacing:.4px;color:#555;text-transform:uppercase;}
+.campo input,.campo select{padding:11px 14px;border:2px solid var(--cinza-b);border-radius:9px;font-size:14px;font-family:'Lato',sans-serif;background:#fafafa;color:var(--preto);transition:border .18s,box-shadow .18s;outline:none;}
+.campo input:focus,.campo select:focus{border-color:var(--verde);background:#fff;box-shadow:0 0 0 3px rgba(27,94,59,.09);}
+.campo select:disabled{opacity:.4;cursor:not-allowed;}
+
+/* ── BLOCO SEMANAS ── */
+.semanas-bloco{background:linear-gradient(135deg,#f0faf4,#fffde7);border:2px solid #b2dfdb;border-radius:12px;padding:20px 22px;margin-top:20px;}
+.bloco-titulo{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--verde);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.bloco-titulo span{background:var(--verde);color:#fff;padding:2px 10px;border-radius:100px;font-size:10px;}
+.tc-info{font-size:11px;color:#555;background:#fff;border:1px solid #c8e6c9;padding:10px 14px;border-radius:8px;margin-bottom:14px;line-height:1.6;}
+.tc-info b{color:var(--verde);}
+.preview-sems{font-size:11px;color:#555;margin-top:10px;line-height:1.8;}
+.pill-sem{display:inline-block;background:#f0f7f3;border:1px solid #a8d5ba;color:var(--verde);padding:2px 9px;border-radius:5px;font-size:10.5px;font-weight:700;margin:2px;}
+.pill-sem.ini,.pill-sem.fim{background:var(--verde);color:#fff;}
+
+.json-ind{display:none;margin-top:14px;background:#f0f7f3;border:1px dashed #8abf9c;padding:10px 16px;border-radius:8px;font-size:12px;color:#444;align-items:center;gap:8px;}
+.json-ind code{background:#fff;padding:2px 8px;border-radius:4px;font-family:'Courier New',monospace;color:var(--verde);font-weight:700;}
+
+.btn-gerar{width:100%;padding:16px;margin-top:24px;background:linear-gradient(120deg,var(--verde),var(--verde-m));color:#fff;border:none;border-radius:10px;font-family:'Lato',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:transform .18s,box-shadow .18s;}
+.btn-gerar:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(27,94,59,.32);}
+.btn-gerar:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
+.loading-bar{height:4px;background:var(--cinza-b);border-radius:2px;overflow:hidden;margin-top:14px;display:none;}
+.loading-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--verde),var(--amarelo));border-radius:2px;transition:width .4s;}
+.loading-msg{text-align:center;font-size:13px;color:var(--verde);font-weight:700;margin-top:8px;display:none;}
+.erro-msg{background:#ffeaea;border-left:4px solid var(--vermelho);color:#8b0000;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;margin-top:14px;display:none;}
+
+#resultado{display:none;}
+.res-acoes{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
+.res-titulo{font-family:'Playfair Display',serif;font-size:20px;color:var(--verde);font-weight:700;}
+.btns-res{display:flex;gap:10px;}
+.btn-v,.btn-i{padding:9px 18px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:2px solid;font-family:'Lato',sans-serif;transition:all .15s;text-transform:uppercase;letter-spacing:.5px;}
+.btn-v{border-color:#ccc;background:#fff;color:#666;}
+.btn-v:hover{border-color:#999;color:#333;}
+.btn-i{border-color:var(--verde);background:var(--verde);color:#fff;}
+.btn-i:hover{background:var(--verde-m);}
+
+/* ── DOCUMENTO ── */
+.plano-doc{background:#fff;border-radius:var(--r);box-shadow:var(--sombra);overflow:hidden;}
+.plano-cabec{text-align:center;padding:28px 36px 22px;border-bottom:3px solid var(--verde);}
+.plano-cabec .inst{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:#666;line-height:1.8;}
+.plano-cabec .titulo{font-family:'Playfair Display',serif;font-size:16px;font-weight:900;text-decoration:underline;text-underline-offset:4px;margin:12px 0 6px;color:var(--preto);}
+.plano-cabec .sub{font-size:12px;color:#555;}
+.tabela-scroll{overflow-x:auto;padding:16px 20px 20px;}
+table.tp{width:100%;border-collapse:collapse;font-family:'Times New Roman',serif;font-size:12px;}
+table.tp th{background:var(--preto);color:#fff;padding:9px 7px;text-align:center;font-family:'Lato',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;border:1px solid #333;}
+table.tp td{border:1px solid #bbb;padding:7px 9px;vertical-align:top;line-height:1.55;}
+table.tp tbody tr:nth-child(even) td{background:#f9fafb;}
+table.tp tbody tr:hover td{background:#f0f7f3;}
+.td-sem{text-align:center;white-space:nowrap;background:#f4f5f4!important;font-weight:700;}
+.td-sem .sn{font-size:13px;color:var(--verde);display:block;}
+.td-sem .sd{font-size:9.5px;color:#888;display:block;margin-top:2px;line-height:1.5;}
+.td-un{text-align:center;background:#eef6f1!important;font-weight:700;}
+.td-un .un{font-size:18px;color:var(--verde);display:block;font-family:'Playfair Display',serif;}
+.td-un .unome{font-size:9.5px;text-transform:uppercase;color:#555;display:block;margin-top:2px;line-height:1.4;}
+.td-ch{text-align:center;font-weight:700;background:#fffbe6!important;white-space:nowrap;}
+.td-ch .cn{font-size:18px;color:var(--verde);display:block;}
+.td-ch .cl{font-size:9.5px;color:#888;display:block;}
+/* Linha ACS */
+.tr-acs td{background:#e8f5e9!important;}
+.acs-badge{display:inline-block;background:var(--verde);color:#fff;font-size:9px;font-weight:900;padding:2px 7px;border-radius:100px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px;}
+/* Linha AT */
+.tr-at td{background:#fff8e1!important;}
+.tr-corr td{background:#fce4ec!important;}
+.at-badge{display:inline-block;background:var(--amarelo);color:#222;font-size:9px;font-weight:900;padding:2px 7px;border-radius:100px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px;}
+.corr-badge{display:inline-block;background:var(--vermelho);color:#fff;font-size:9px;font-weight:900;padding:2px 7px;border-radius:100px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px;}
+.tema-lbl{font-weight:700;font-size:11.5px;display:block;margin-bottom:5px;color:var(--preto);}
+ul.lc{margin:0 0 0 14px;padding:0;}
+ul.lc li{margin-bottom:3px;}
+.plano-rod{padding:22px 36px;border-top:2px solid #eee;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;}
+.resumo{background:var(--verde-claro);border:1px solid #a8d5ba;border-radius:10px;padding:12px 20px;font-size:12px;color:var(--verde);}
+.resumo strong{font-size:20px;display:block;font-family:'Playfair Display',serif;}
+.assinaturas{display:flex;gap:36px;}
+.assbloco{text-align:center;}
+.assbloco .linha{width:160px;border-top:1px solid #333;margin:0 auto 5px;}
+.assbloco p{font-size:10.5px;color:#444;}
+.assbloco small{font-size:9px;color:#888;display:block;margin-top:1px;}
+.aviso-nf{padding:32px;}
+.aviso-box{background:#fff8e1;border-left:4px solid var(--amarelo);padding:24px;border-radius:0 10px 10px 0;}
+.aviso-box h3{font-size:16px;color:#5c4000;margin-bottom:10px;}
+.aviso-box p{font-size:13px;color:#6d4c00;line-height:1.7;}
+.aviso-box code{background:#fff3cd;padding:2px 7px;border-radius:4px;font-size:12px;font-family:'Courier New',monospace;color:#333;}
+
+@media print{
+  body{background:#fff;}
+  .topo,.container>.card,.res-acoes{display:none!important;}
+  .container{padding:0;}
+  .plano-doc{border-radius:0;box-shadow:none;}
+  #resultado{display:block!important;}
+  .tabela-scroll{padding:0;}
+  table.tp{font-size:11px;}
+  .plano-rod{page-break-inside:avoid;}
+}
+@media(max-width:800px){.g2,.g3{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.g2,.g3{grid-template-columns:1fr;}.topo h1{font-size:18px;}.assinaturas{flex-direction:column;align-items:center;}}
+</style>
 </head>
 <body>
 
-  <!-- ── Nav ── -->
-  <nav class="site-nav">
-    <a href="#" class="nav-logo">AF / DEV</a>
-    <ul class="nav-links">
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projectos">Projectos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+<header class="topo">
+  <div class="topo-inner">
+    <div class="bandeira"><s class="b1"></s><s class="b2"></s><s class="b3"></s></div>
+    <div>
+      <h1>Gerador de Plano Analítico</h1>
+      <p>República de Moçambique · Ensino Primário e Secundário · 2026</p>
+    </div>
+    <div class="topo-badge">SDEJT</div>
+  </div>
+</header>
+
+<div class="container">
+
+<div class="card" id="formCard">
+  <div class="card-head">
+    <h2>📋 Configurar Plano Analítico</h2>
+    <p>Preencha os dados — o programa é carregado automaticamente do ficheiro JSON correspondente</p>
+  </div>
+  <div class="card-body">
+
+    <div class="sec">📍 Identificação Institucional</div>
+    <div class="g3">
+      <div class="campo">
+        <label>Província</label>
+        <select id="provincia" onchange="carregarDistritos()">
+          <option value="">Seleccione...</option>
+          <option>Niassa</option><option>Cabo Delgado</option><option>Nampula</option>
+          <option>Zambézia</option><option>Tete</option><option>Manica</option>
+          <option>Sofala</option><option>Inhambane</option><option>Gaza</option>
+          <option>Maputo Província</option><option>Maputo Cidade</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Distrito</label>
+        <select id="distrito"><option value="">Primeiro seleccione a província</option></select>
+      </div>
+      <div class="campo">
+        <label>Nome da Escola</label>
+        <input type="text" id="nomeEscola" placeholder="Ex: EP1 de Machaze">
+      </div>
+    </div>
+    <div class="g2" style="margin-top:18px;">
+      <div class="campo">
+        <label>Professor(a)</label>
+        <input type="text" id="nomeProfessor" placeholder="Nome completo">
+      </div>
+      <div class="campo">
+        <label>Ano Lectivo</label>
+        <input type="text" value="2026" disabled>
+      </div>
+    </div>
+
+    <div class="sec">📚 Dados Curriculares</div>
+    <div class="g3">
+      <div class="campo">
+        <label>Classe</label>
+        <select id="classe" onchange="onClasseChange()">
+          <option value="">Seleccione...</option>
+          <option>1ª Classe</option><option>2ª Classe</option><option>3ª Classe</option>
+          <option>4ª Classe</option><option>5ª Classe</option><option>6ª Classe</option>
+          <option>7ª Classe</option><option>8ª Classe</option><option>9ª Classe</option>
+          <option>10ª Classe</option><option>11ª Classe</option><option>12ª Classe</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Disciplina</label>
+        <select id="disciplina" disabled onchange="onDisciplinaChange()">
+          <option value="">Primeiro seleccione a classe</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Trimestre</label>
+        <select id="trimestre" disabled onchange="onTrimestreChange()">
+          <option value="">Seleccione...</option>
+          <option value="1">1º Trimestre</option>
+          <option value="2">2º Trimestre</option>
+          <option value="3">3º Trimestre</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="json-ind" id="jsonInd">
+      📂 Ficheiro a carregar: <code id="jsonPath"></code>
+    </div>
+
+    <!-- ══ CONFIGURAÇÃO DE SEMANAS ══ -->
+    <div class="semanas-bloco" id="semanasBloco" style="display:none;">
+      <div class="bloco-titulo">
+        📅 Semanas do Trimestre
+        <span id="trimLabel">—</span>
+      </div>
+      <div class="tc-info" id="infoAnterior" style="display:none;"></div>
+      <div class="g2">
+        <div class="campo">
+          <label>Data início 1ª semana <small style="font-weight:400;color:#999;">(DD/MM)</small></label>
+          <input type="text" id="dataInicio" maxlength="5" placeholder="Ex: 02/03"
+                 oninput="formatarData(this)">
+        </div>
+        <div class="campo">
+          <label>Duração de cada semana</label>
+          <select id="diasSemana" onchange="actualizarPreview()">
+            <option value="5">Seg a Sex (5 dias)</option>
+            <option value="6">Seg a Sáb (6 dias)</option>
+          </select>
+        </div>
+      </div>
+      <div id="previewSems" class="preview-sems" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="loading-bar" id="loadingBar"><div class="loading-fill" id="loadingFill"></div></div>
+    <div class="loading-msg" id="loadingMsg"></div>
+    <div class="erro-msg"    id="erroMsg"></div>
+
+    <button class="btn-gerar" id="btnGerar" onclick="gerarPlano()">
+      🗒️ &nbsp; Gerar Plano Analítico
+    </button>
+
+  </div>
+</div>
+
+<div id="resultado">
+  <div class="res-acoes">
+    <div class="res-titulo">📄 Plano Analítico Gerado</div>
+    <div class="btns-res">
+      <button class="btn-v" onclick="voltarForm()">← Voltar</button>
+      <button class="btn-i" onclick="window.print()">🖨️ Imprimir / PDF</button>
+    </div>
+  </div>
+  <div class="plano-doc" id="planoDoc"></div>
+</div>
+
+</div>
+
+<script>
+/* ── SLUG ── */
+const SLUG = {
+  "Língua Portuguesa":"lingua_portuguesa","Português":"lingua_portuguesa",
+  "Matemática":"matematica","Ciências Naturais":"ciencias_naturais",
+  "Ciências Sociais":"ciencias_sociais","Educação Física":"educacao_fisica",
+  "Educação Visual":"educacao_visual","Inglês":"ingles","Francês":"frances",
+  "História":"historia","Geografia":"geografia","Biologia":"biologia",
+  "Física":"fisica","Química":"quimica","Filosofia":"filosofia",
+  "Psicologia":"psicologia","TICs":"tics","Agropecuária":"agropecuaria",
+  "Desenho e Geometria Descritiva":"desenho_geometria",
+};
+function calcJsonPath(disc, classe, trim){
+  const d = SLUG[disc] || disc.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"");
+  // "3ª Classe" → "3a" | substitui ª/º por "a" antes de tudo
+  const c = classe.replace(/[ªº°]/g,"a").toLowerCase().replace(/\s*classe\s*/g,"").replace(/\s+/g,"").trim();
+  if(trim) return `programas/${d}_${c}_t${trim}.json`;
+  return `programas/${d}_${c}.json`;
+}
+
+/* ── DISCIPLINAS POR CLASSE ── */
+const DISCIPLINAS={
+  "1ª Classe":["Língua Portuguesa","Matemática","Educação Física"],
+  "2ª Classe":["Língua Portuguesa","Matemática","Educação Física"],
+  "3ª Classe":["Língua Portuguesa","Matemática","Educação Física"],
+  "4ª Classe":["Língua Portuguesa","Matemática","Ciências Sociais","Ciências Naturais","Educação Física"],
+  "5ª Classe":["Língua Portuguesa","Matemática","Ciências Sociais","Ciências Naturais","Educação Visual","Educação Física"],
+  "6ª Classe":["Língua Portuguesa","Matemática","Ciências Sociais","Ciências Naturais","Educação Visual","Educação Física"],
+  "7ª Classe":["Português","Matemática","Inglês","História","Geografia","Biologia","Física","Educação Física","TICs","Agropecuária"],
+  "8ª Classe":["Português","Matemática","Inglês","História","Geografia","Biologia","Física","Educação Física","TICs","Agropecuária"],
+  "9ª Classe":["Português","Matemática","Inglês","História","Geografia","Biologia","Física","Química","Francês","Educação Física","TICs","Agropecuária"],
+  "10ª Classe":["Português","Matemática","Inglês","História","Geografia","Biologia","Física","Química","Francês","Educação Física","Filosofia"],
+  "11ª Classe":["Português","Matemática","Inglês","História","Geografia","Biologia","Física","Química","Francês","Educação Física","Filosofia","TICs","Desenho e Geometria Descritiva"],
+  "12ª Classe":["Português","Matemática","Inglês","História","Geografia","Biologia","Física","Química","Francês","Educação Física","Filosofia","Psicologia","TICs"],
+};
+
+/* ── DISTRITOS ── */
+const DISTRITOS={
+  "Niassa":["Cuamba","Lago","Lichinga","Majune","Mandimba","Marrupa","Maúa","Mavago","Mecanhelas","Mecula","Metarica","Muembe","N'gauma","Nipepe","Sanga"],
+  "Cabo Delgado":["Ancuabe","Balama","Chiúre","Ibo","Macomia","Mecúfi","Meluco","Mocímboa da Praia","Montepuez","Mueda","Muidumbe","Namuno","Nangade","Palma","Pemba","Quissanga"],
+  "Nampula":["Angoche","Eráti","Ilha de Moçambique","Lalaua","Larde","Liúpo","Malema","Meconta","Mecubúri","Memba","Mogincual","Mogovolas","Moma","Monapo","Mossuril","Muecate","Murrupula","Nacala","Nacala-a-Velha","Nacarôa","Nampula","Rapale","Ribáuè"],
+  "Zambézia":["Alto Molócuè","Chinde","Gile","Gurué","Ile","Inhassunge","Luabo","Maganja da Costa","Milange","Mocuba","Mopeia","Morrumbala","Namacurra","Namarroi","Nicoadala","Pebane","Quelimane"],
+  "Tete":["Angónia","Cahora-Bassa","Changara","Chifunde","Chiuta","Mágoè","Marávia","Moatize","Mutarara","Tsangano","Zumbo"],
+  "Manica":["Barué","Gondola","Guro","Macate","Machaze","Macossa","Manica","Mossurize","Sussundenga","Tambara","Vanduzi"],
+  "Sofala":["Búzi","Caia","Chemba","Cheringoma","Chibabava","Dondo","Gorongosa","Machanga","Maringué","Marromeu","Muanza","Nhamatanda"],
+  "Inhambane":["Funhalouro","Govuro","Homoíne","Inhambane","Inharrime","Inhassoro","Jangamo","Mabote","Massinga","Maxixe","Morrumbene","Panda","Vilankulo","Zavala"],
+  "Gaza":["Bilene","Chibuto","Chicualacuala","Chigubo","Chókwè","Guijá","Limpopo","Mabalane","Manjacaze","Mapai","Massingir","Xai-Xai"],
+  "Maputo Província":["Boane","Magude","Manhiça","Marracuene","Matola","Matutuíne","Moamba","Namaacha"],
+  "Maputo Cidade":["KaMpfumo","Nlhamankulu","KaMaxaquene","KaMavota","KaMubukwana","KaTembe","KaNyaka"],
+};
+
+/* ── TRIMESTRES (datas e semanas globais guardadas entre trimestres) ── */
+const STATE_TRIMS = {
+  "1": { dataInicio: "02/03", gerado: [] },
+  "2": { dataInicio: "",      gerado: [] },
+  "3": { dataInicio: "",      gerado: [] },
+};
+
+const cacheJSON = {};
+
+/* ── UTILITÁRIOS DE DATA ── */
+function adicionarDias(ddmm, n){
+  const [d,m] = ddmm.split("/").map(Number);
+  const dt = new Date(2026, m-1, d);
+  dt.setDate(dt.getDate()+n);
+  return String(dt.getDate()).padStart(2,"0")+"/"+String(dt.getMonth()+1).padStart(2,"0");
+}
+function gerarDatas(dataIni, n, diasSem){
+  const arr=[];
+  let cur=dataIni;
+  for(let i=0;i<n;i++){
+    arr.push(`${cur} a ${adicionarDias(cur, diasSem-1)}`);
+    cur=adicionarDias(cur,7);
+  }
+  return arr;
+}
+function dataValida(s){ return /^\d{2}\/\d{2}$/.test(s); }
+function formatarData(input){
+  let v=input.value.replace(/\D/g,"").slice(0,4);
+  if(v.length>=3) v=v.slice(0,2)+"/"+v.slice(2);
+  input.value=v;
+  actualizarPreview();
+}
+
+/* ── FORMULÁRIO ── */
+function carregarDistritos(){
+  const prov=document.getElementById("provincia").value;
+  const sel=document.getElementById("distrito");
+  sel.innerHTML="<option value=''>Seleccione o distrito</option>";
+  (DISTRITOS[prov]||[]).sort().forEach(d=>sel.innerHTML+=`<option>${d}</option>`);
+}
+function onClasseChange(){
+  const classe=document.getElementById("classe").value;
+  const dSel=document.getElementById("disciplina");
+  const tSel=document.getElementById("trimestre");
+  dSel.innerHTML="<option value=''>Seleccione a disciplina</option>";
+  dSel.disabled=!classe; tSel.value=""; tSel.disabled=true;
+  document.getElementById("jsonInd").style.display="none";
+  document.getElementById("semanasBloco").style.display="none";
+  if(!classe) return;
+  (DISCIPLINAS[classe]||[]).forEach(d=>dSel.innerHTML+=`<option>${d}</option>`);
+  dSel.disabled=false;
+}
+function onDisciplinaChange(){
+  const classe=document.getElementById("classe").value;
+  const disc=document.getElementById("disciplina").value;
+  const tSel=document.getElementById("trimestre");
+  tSel.value=""; tSel.disabled=!disc;
+  document.getElementById("semanasBloco").style.display="none";
+  if(classe&&disc){
+    const trim=document.getElementById("trimestre").value;
+    document.getElementById("jsonPath").textContent=calcJsonPath(disc,classe,trim||null);
+    document.getElementById("jsonInd").style.display="flex";
+  } else {
+    document.getElementById("jsonInd").style.display="none";
+  }
+}
+function onTrimestreChange(){
+  const trim=document.getElementById("trimestre").value;
+  if(!trim){ document.getElementById("semanasBloco").style.display="none"; return; }
+  document.getElementById("semanasBloco").style.display="block";
+  document.getElementById("trimLabel").textContent=trim+"º Trimestre";
+
+  /* Actualizar indicador do ficheiro com trimestre */
+  const _cls=document.getElementById("classe").value;
+  const _dsc=document.getElementById("disciplina").value;
+  if(_cls&&_dsc){
+    document.getElementById("jsonPath").textContent=calcJsonPath(_dsc,_cls,trim);
+    document.getElementById("jsonInd").style.display="flex";
+  }
+
+  /* Sugerir data de início a partir do trimestre anterior */
+  const trimAnt=String(Number(trim)-1);
+  const infoDiv=document.getElementById("infoAnterior");
+  if(trim!=="1" && STATE_TRIMS[trimAnt].gerado.length>0){
+    const ultima=STATE_TRIMS[trimAnt].gerado[STATE_TRIMS[trimAnt].gerado.length-1];
+    const fimUltima=ultima.split(" a ")[1];
+    const proxSeg=adicionarDias(fimUltima,3);
+    if(!STATE_TRIMS[trim].dataInicio) STATE_TRIMS[trim].dataInicio=proxSeg;
+    infoDiv.innerHTML=`ℹ️ O <b>${trimAnt}º Trimestre</b> terminou em <b>${fimUltima}</b>. Este trimestre começa em <b>${proxSeg}</b>.`;
+    infoDiv.style.display="block";
+  } else if(trim!=="1" && !STATE_TRIMS[trim].dataInicio){
+    infoDiv.innerHTML=`⚠️ Gere o <b>${trimAnt}º Trimestre</b> primeiro para calcular a data de início automaticamente.`;
+    infoDiv.style.display="block";
+  } else {
+    infoDiv.style.display="none";
+  }
+  document.getElementById("dataInicio").value=STATE_TRIMS[trim].dataInicio||"";
+  actualizarPreview();
+}
+
+/* ── PREVIEW SEMANAS ── */
+function actualizarPreview(){
+  const trim=document.getElementById("trimestre").value;
+  const dataI=document.getElementById("dataInicio").value.trim();
+  const dias=parseInt(document.getElementById("diasSemana").value)||5;
+  const prev=document.getElementById("previewSems");
+  if(!trim||!dataValida(dataI)){ prev.innerHTML='<span style="color:#aaa;">Preencha a data de início.</span>'; return; }
+
+  // Número de semanas vem do JSON (semanas_por_trimestre)
+  // Mostrar preview com base no JSON já carregado ou padrão 14/13/12
+  const path=calcJsonPath(
+    document.getElementById("disciplina").value,
+    document.getElementById("classe").value,
+    trim
+  );
+  const prog=cacheJSON[path];
+  const n=prog ? (prog.num_semanas||14) : ({"1":14,"2":13,"3":12}[trim]||14);
+
+  const datas=gerarDatas(dataI,n,dias);
+  let html=`<div style="margin-bottom:8px;font-size:11px;font-weight:700;color:var(--verde);">${n} semanas · ${trim}º Trimestre</div><div style="display:flex;flex-wrap:wrap;gap:4px;">`;
+  datas.forEach((d,i)=>{
+    const cls=(i===0||i===n-1)?"pill-sem ini":"pill-sem";
+    html+=`<span class="${cls}">S${i+1}: ${d}</span>`;
+  });
+  html+=`</div>`;
+  prev.innerHTML=html;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   GERAR PLANO — lê plano_semanas do JSON directamente
+══════════════════════════════════════════════════════════════════ */
+async function gerarPlano(){
+  const prov   = document.getElementById("provincia").value;
+  const dist   = document.getElementById("distrito").value;
+  const escola = document.getElementById("nomeEscola").value || "Escola Primária";
+  const classe = document.getElementById("classe").value;
+  const disc   = document.getElementById("disciplina").value;
+  const trim   = document.getElementById("trimestre").value;
+  const prof   = document.getElementById("nomeProfessor").value;
+  const dataI  = document.getElementById("dataInicio").value.trim();
+  const dias   = parseInt(document.getElementById("diasSemana").value)||5;
+
+  if(!prov)              return mostrarErro("⚠️ Seleccione a Província.");
+  if(!dist)              return mostrarErro("⚠️ Seleccione o Distrito.");
+  if(!classe)            return mostrarErro("⚠️ Seleccione a Classe.");
+  if(!disc)              return mostrarErro("⚠️ Seleccione a Disciplina.");
+  if(!trim)              return mostrarErro("⚠️ Seleccione o Trimestre.");
+  if(!dataValida(dataI)) return mostrarErro("⚠️ Data de início inválida. Use DD/MM (ex: 02/03).");
+  esconderErro();
+
+  /* Fetch JSON */
+  const path=calcJsonPath(disc,classe,trim);
+  mostrarLoading(`A carregar ${path} …`);
+  let prog;
+  try{
+    prog=cacheJSON[path]||(cacheJSON[path]=await fetch(path).then(r=>{
+      if(!r.ok) throw new Error(r.status);
+      return r.json();
+    }));
+  }catch(e){
+    esconderLoading();
+    mostrarEcraNaoEncontrado(path,disc,classe);
+    return;
+  }
+  esconderLoading();
+
+  /* Número de semanas deste trimestre — vem directamente do ficheiro */
+  const nSems = prog.num_semanas || 14;
+
+  /* Gerar datas para este trimestre */
+  STATE_TRIMS[trim].dataInicio = dataI;
+  STATE_TRIMS[trim].gerado = gerarDatas(dataI, nSems, dias);
+
+  /* Ficheiro já contém apenas este trimestre */
+  const linhas = prog.plano_semanas || [];
+
+  if(!linhas.length)
+    return mostrarErro(`Nenhum conteúdo encontrado para o ${trim}º Trimestre no ficheiro JSON.`);
+
+  renderizarPlano({ prov, dist, escola, classe, disc, trim: trimNum, prof,
+                    linhas, nSems, chSem: prog.carga_horaria_semanal||16,
+                    datasGeradas: STATE_TRIMS[trim].gerado });
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RENDERIZAR — 1 linha por semana, nunca mistura semanas
+══════════════════════════════════════════════════════════════════ */
+function renderizarPlano({ prov, dist, escola, classe, disc, trim, prof,
+                           linhas, nSems, chSem, datasGeradas }){
+
+  const hoje = new Date().toLocaleDateString("pt-MZ",{day:"2-digit",month:"long",year:"numeric"});
+  const datasIni = datasGeradas[0] || "";
+  const datasFim = datasGeradas[datasGeradas.length-1] || "";
+  const totalCH  = linhas.reduce((a,l)=>a+(l.ch||chSem),0);
+
+  let html=`
+  <div class="plano-cabec">
+    <div class="inst">
+      República de Moçambique &nbsp;·&nbsp; Província de ${prov} &nbsp;·&nbsp; Governo do Distrito de ${dist}<br>
+      Serviço Distrital de Educação, Juventude e Tecnologia de ${dist}<br>
+      Comissão de Apoio Pedagógica
+    </div>
+    <div class="titulo">Plano Analítico de ${disc}, ${classe}, ${trim}º Trimestre/2026</div>
+    <div class="sub">
+      Escola: <strong>${escola}</strong> &nbsp;|&nbsp;
+      Vigência: <strong>${datasIni} a ${datasFim}</strong> &nbsp;|&nbsp;
+      ${nSems} semanas
+    </div>
+  </div>
+  <div class="tabela-scroll">
+  <table class="tp">
+    <thead><tr>
+      <th style="width:11%">SEMANA<br>DATA</th>
+      <th style="width:11%">UNIDADE<br>TEMÁTICA</th>
+      <th style="width:22%">CONTEÚDOS</th>
+      <th style="width:25%">OBJECTIVOS<br><span style="font-weight:400;opacity:.8;font-size:9px;">O aluno deve ser capaz de:</span></th>
+      <th style="width:20%">RESULTADOS DE APRENDIZAGEM<br><span style="font-weight:400;opacity:.8;font-size:9px;">O aluno:</span></th>
+      <th style="width:11%">CARGA<br>SEMANAL</th>
+    </tr></thead>
+    <tbody>`;
+
+  linhas.forEach((linha, idx) => {
+    /* Número relativo dentro do trimestre (1-based) */
+    const posRel  = idx + 1;
+    const dataSem = datasGeradas[idx] || "";
+
+    /* Número ordinal da semana */
+    const ords = ["1ª","2ª","3ª","4ª","5ª","6ª","7ª","8ª","9ª","10ª","11ª","12ª","13ª","14ª"];
+    const semLabel = (ords[idx]||`${posRel}ª`) + " Semana";
+
+    /* Tipo da linha */
+    const isCorr = linha.tipo === "correcao_at";
+    const isPrep = linha.tipo === "preparacao_at";
+    const isAcs  = !!linha.acs;
+
+    let trClass = "";
+    if(isCorr)      trClass = "tr-corr";
+    else if(isPrep) trClass = "tr-at";
+    else if(isAcs)  trClass = "tr-acs";
+
+    /* Badge */
+    let badge = "";
+    if(isAcs)       badge = `<span class="acs-badge">${linha.acs}</span><br>`;
+    else if(isPrep) badge = `<span class="at-badge">Preparação e Realização da AT</span><br>`;
+    else if(isCorr) badge = `<span class="corr-badge">Correcção e Entrega da AT</span><br>`;
+
+    /* Conteúdos, objectivos, resultados */
+    const conts  = (linha.conteudos||[]).map(c=>`<li>${c}</li>`).join("");
+    const objs   = (linha.objectivos||[]).map(o=>`<li>${o}</li>`).join("");
+    const resuls = (linha.resultados||[]).map(r=>`<li>${r}</li>`).join("");
+
+    /* Unidade */
+    const unNum  = linha.unidade_num  || "";
+    const unNome = linha.unidade_nome || "";
+
+    html+=`<tr class="${trClass}">
+      <td class="td-sem">
+        <span class="sn">${semLabel}</span>
+        <span class="sd">${dataSem}</span>
+      </td>
+      <td class="td-un">
+        <span class="un">${unNum}</span>
+        <span class="unome">${unNome}</span>
+      </td>
+      <td>${badge}${conts?`<ul class="lc">${conts}</ul>`:""}</td>
+      <td><ul class="lc">${objs}</ul></td>
+      <td><ul class="lc">${resuls}</ul></td>
+      <td class="td-ch">
+        <span class="cn">${linha.ch||chSem}</span>
+        <span class="cl">Tempos</span>
+      </td>
+    </tr>`;
+  });
+
+  html+=`</tbody></table></div>
+  <div class="plano-rod">
+    <div>
+      <div style="font-size:11px;color:#888;margin-bottom:8px;">📅 ${dist}, ${hoje}</div>
+      <div class="resumo">
+        Carga Horária Total<br>
+        <strong>${totalCH} Tempos</strong>
+        <span style="font-size:10px;display:block;margin-top:2px;">${nSems} semanas · ${chSem} tempos/semana</span>
+      </div>
+    </div>
+    <div class="assinaturas">
+      <div class="assbloco"><div class="linha"></div><p>${prof||"Professor(a)"}</p><small>Professor(a)</small></div>
+      <div class="assbloco"><div class="linha"></div><p>Director(a) da Escola</p><small>Visto</small></div>
+      <div class="assbloco"><div class="linha"></div><p>CAP / ${dist}</p><small>Aprovação</small></div>
+    </div>
+  </div>`;
+
+  document.getElementById("planoDoc").innerHTML=html;
+  document.getElementById("formCard").style.display="none";
+  document.getElementById("resultado").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ── ECRÃ NÃO ENCONTRADO ── */
+function mostrarEcraNaoEncontrado(path, disc, classe){
+  // Gerar lista dos 3 ficheiros necessários
+  const base = path.replace(/_t[123]\.json$/, "");
+  document.getElementById("planoDoc").innerHTML=`
+  <div class="aviso-nf"><div class="aviso-box">
+    <h3>⚠️ Ficheiro JSON não encontrado</h3>
+    <p>O sistema procurou: <code>${path}</code><br>mas o ficheiro não existe na pasta <code>programas/</code>.</p>
+    <p style="margin-top:14px;"><b>Certifique-se que os 3 ficheiros do trimestre estão na pasta <code>programas/</code>:</b></p>
+    <ul style="margin:10px 0 0 18px;line-height:2;">
+      <li><code>${base}_t1.json</code></li>
+      <li><code>${base}_t2.json</code></li>
+      <li><code>${base}_t3.json</code></li>
     </ul>
-  </nav>
+    <p style="margin-top:14px;font-size:12px;color:#888;">
+      A estrutura de pastas deve ser:<br>
+      <code>plano.html</code><br>
+      <code>programas/${base.split("/")[1]}_t1.json</code><br>
+      <code>programas/${base.split("/")[1]}_t2.json</code><br>
+      <code>programas/${base.split("/")[1]}_t3.json</code>
+    </p>
+  </div></div>`;
+  document.getElementById("formCard").style.display="none";
+  document.getElementById("resultado").style.display="block";
+}
 
-  <!-- ── Hero ── -->
-  <section class="hero-section" style="position:relative; overflow:hidden;">
-    <div class="container">
-      <div class="hero-label">Programador · Moçambique</div>
-      <h1 class="hero-name">
-        Alexandre<br>Francisco
-      </h1>
-      <p class="hero-desc">
-        Construo aplicações móveis e sistemas digitais que resolvem
-        problemas reais para pessoas reais — especialmente no contexto
-        africano.
-      </p>
-      <a href="#contacto" class="hero-cta">
-        Falar comigo
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-      <div class="hero-flag">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-          <circle cx="12" cy="9" r="2.5"/>
-        </svg>
-        Maputo, Moçambique
-      </div>
-    </div>
-    <div class="hero-number">01</div>
-  </section>
-
-  <!-- ── Sobre ── -->
-  <section id="sobre">
-    <div class="sobre-grid container">
-      <div>
-        <div class="section-label">Sobre mim</div>
-        <div class="section-number">02</div>
-      </div>
-      <div>
-        <p class="sobre-text">
-          Sou <strong>Alexandre Francisco</strong>, programador moçambicano
-          apaixonado por tecnologia que tem impacto. Desenvolvo soluções
-          Android nativas com foco em <strong>educação, gestão e produtividade</strong>
-          — ferramentas feitas para o contexto africano, por alguém que
-          o conhece por dentro.
-        </p>
-        <p class="sobre-text">
-          Acredito que o bom software começa numa compreensão profunda
-          do utilizador. O meu processo combina análise técnica rigorosa
-          com atenção ao detalhe de quem vai usar o produto no dia-a-dia.
-        </p>
-        <div class="sobre-stats">
-          <div>
-            <div class="stat-number">3+</div>
-            <div class="stat-label">Anos de experiência</div>
-          </div>
-          <div>
-            <div class="stat-number">10+</div>
-            <div class="stat-label">Projectos entregues</div>
-          </div>
-          <div>
-            <div class="stat-number">MZ</div>
-            <div class="stat-label">Baseado em Maputo</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Skills ── -->
-  <section id="skills" class="skills-section">
-    <div class="container">
-      <div class="skills-header">
-        <div class="section-label" style="margin:0;">03</div>
-        <h2 class="skills-title">Stack técnica</h2>
-      </div>
-
-      <div class="columns">
-        <div class="column">
-          <div class="skill-group">
-            <div class="skill-group-title">Mobile</div>
-            <div class="skill-tags">
-              <span class="skill-tag">Android</span>
-              <span class="skill-tag">Kotlin</span>
-              <span class="skill-tag">Jetpack</span>
-              <span class="skill-tag">Room</span>
-              <span class="skill-tag">ViewModel</span>
-              <span class="skill-tag">Coroutines</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-title">Backend / APIs</div>
-            <div class="skill-tags">
-              <span class="skill-tag">REST API</span>
-              <span class="skill-tag">Firebase</span>
-              <span class="skill-tag">OkHttp</span>
-              <span class="skill-tag">Retrofit</span>
-              <span class="skill-tag">JSON</span>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="skill-group">
-            <div class="skill-group-title">Integrações</div>
-            <div class="skill-tags">
-              <span class="skill-tag">Google Cloud Vision</span>
-              <span class="skill-tag">Gemini AI</span>
-              <span class="skill-tag">ML Kit</span>
-              <span class="skill-tag">PDF Generation</span>
-              <span class="skill-tag">FileProvider</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-title">Ferramentas</div>
-            <div class="skill-tags">
-              <span class="skill-tag">Android Studio</span>
-              <span class="skill-tag">Git</span>
-              <span class="skill-tag">Play Store</span>
-              <span class="skill-tag">Figma</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Projectos ── -->
-  <section id="projectos" class="projects-section">
-    <div class="container">
-      <div class="skills-header">
-        <div class="section-label" style="margin:0;">04</div>
-        <h2 class="skills-title">Projectos</h2>
-      </div>
-
-      <div class="project-list">
-
-        <div class="project-item">
-          <div class="project-num">001</div>
-          <div>
-            <div class="project-name">Pautaa</div>
-            <p class="project-desc">
-              Sistema de gestão escolar para Moçambique. Registo de alunos,
-              geração de pautas em PDF, importação de turmas por fotografia
-              com OCR e IA, relatórios de frequência e resultados.
-            </p>
-            <div class="project-tech">
-              <span class="tech-badge">Android</span>
-              <span class="tech-badge">Kotlin</span>
-              <span class="tech-badge">Gemini AI</span>
-              <span class="tech-badge">PDF</span>
-              <span class="tech-badge">Room</span>
-            </div>
-          </div>
-          <a href="#" class="project-arrow">↗</a>
-        </div>
-
-        <div class="project-item">
-          <div class="project-num">002</div>
-          <div>
-            <div class="project-name">OCR de Listas</div>
-            <p class="project-desc">
-              Módulo de reconhecimento óptico de listas manuscritas usando
-              Gemini Vision. Extrai nomes de alunos de fotografias com alta
-              precisão, mesmo com caligrafia difícil.
-            </p>
-            <div class="project-tech">
-              <span class="tech-badge">Gemini API</span>
-              <span class="tech-badge">ML Kit</span>
-              <span class="tech-badge">Kotlin</span>
-            </div>
-          </div>
-          <a href="#" class="project-arrow">↗</a>
-        </div>
-
-        <div class="project-item">
-          <div class="project-num">003</div>
-          <div>
-            <div class="project-name">Gerador de PDFs</div>
-            <p class="project-desc">
-              Motor de geração de documentos académicos complexos — pautas
-              A4/A3, boletins individuais, relatórios de exames — com suporte
-              ao sistema educativo moçambicano.
-            </p>
-            <div class="project-tech">
-              <span class="tech-badge">Android</span>
-              <span class="tech-badge">iText</span>
-              <span class="tech-badge">Kotlin</span>
-            </div>
-          </div>
-          <a href="#" class="project-arrow">↗</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Contacto ── -->
-  <section id="contacto" class="contact-section">
-    <div class="container">
-      <p class="section-label" style="justify-content:center; display:flex;">05 — Contacto</p>
-      <h2 class="contact-title">
-        Vamos<br>trabalhar juntos
-      </h2>
-      <p class="contact-sub">Disponível para projectos freelance e colaborações.</p>
-      <a href="mailto:alexandrefrancisco@email.com" class="contact-email">
-        alexandrefrancisco@email.com
-      </a>
-      <div class="social-links">
-        <a href="#" class="social-link">GitHub</a>
-        <a href="#" class="social-link">LinkedIn</a>
-        <a href="#" class="social-link">WhatsApp</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Footer ── -->
-  <footer class="site-footer">
-    <span class="footer-copy">© 2026 Alexandre Francisco</span>
-    <span class="footer-loc">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-        <circle cx="12" cy="9" r="2.5"/>
-      </svg>
-      Maputo · Moçambique
-    </span>
-  </footer>
-
-</body>
-</html>
-  <script src="login.js"></script>
+/* ── HELPERS UI ── */
+function voltarForm(){
+  document.getElementById("formCard").style.display="block";
+  document.getElementById("resultado").style.display="none";
+}
+function mostrarLoading(msg){
+  document.getElementById("loadingBar").style.display="block";
+  document.getElementById("loadingMsg").style.display="block";
+  document.getElementById("loadingMsg").textContent=msg;
+  document.getElementById("loadingFill").style.width="0%";
+  document.getElementById("btnGerar").disabled=true;
+  setTimeout(()=>{ document.getElementById("loadingFill").style.width="70%"; },50);
+}
+function esconderLoading(){
+  document.getElementById("loadingFill").style.width="100%";
+  setTimeout(()=>{
+    document.getElementById("loadingBar").style.display="none";
+    document.getElementById("loadingMsg").style.display="none";
+    document.getElementById("btnGerar").disabled=false;
+  },400);
+}
+function mostrarErro(msg){
+  const el=document.getElementById("erroMsg");
+  el.innerHTML=msg; el.style.display="block";
+  setTimeout(()=>{ el.style.display="none"; },6000);
+}
+function esconderErro(){ document.getElementById("erroMsg").style.display="none"; }
+</script>
 </body>
 </html>
