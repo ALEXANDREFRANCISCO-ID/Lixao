@@ -1,1 +1,310 @@
-
+{
+  "disciplina": "Língua Portuguesa",
+  "classe": "3ª Classe",
+  "trimestre": 1,
+  "carga_horaria_semanal": 16,
+  "num_semanas": 14,
+  "plano_semanas": [
+    {
+      "semana": 1,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "A minha história e relato de rotinas",
+      "conteudos": [
+        "A minha história",
+        "Membros da família e relações de parentesco"
+      ],
+      "objectivos": [
+        "Identificar o seu nome, local e data do seu nascimento"
+      ],
+      "resultados": [],
+      "ch": 16,
+      "acs": null,
+      "at": null,
+      "semana_trim": 1
+    },
+    {
+      "semana": 2,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "A minha história e relato de rotinas",
+      "conteudos": [
+        "Actividades dos membros da família (Revisão do 1º ciclo)",
+        "Relato de rotinas: expressões relacionadas com os momentos do dia/tempo (manhã, tarde, noite, antes, depois, quando e durante)"
+      ],
+      "objectivos": [
+        "Indicar o nome da escola onde estuda e a classe",
+        "Identificar os membros da sua família de acordo com o grau de parentesco"
+      ],
+      "resultados": [],
+      "ch": 16,
+      "acs": null,
+      "at": null,
+      "semana_trim": 2
+    },
+    {
+      "semana": 3,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "A minha história e relato de rotinas",
+      "conteudos": [
+        "Expressões para indicar a ordem: 1º, 2º, 3º",
+        "Funcionamento da Língua — Verbo ser e estar no presente, pretérito perfeito do indicativo e futuro perifrástico",
+        "Realização da 1ª ACS"
+      ],
+      "objectivos": [
+        "Relatar, oralmente, a sua rotina diária",
+        "Construir frases usando verbos ser e estar no presente, pretérito perfeito do indicativo e futuro perifrástico",
+        "Avaliar o grau de assimilação da matéria dada"
+      ],
+      "resultados": [
+        "Relata, oralmente e por escrito, a sua história"
+      ],
+      "ch": 2,
+      "acs": "1ª ACS",
+      "at": null,
+      "semana_trim": 3
+    },
+    {
+      "semana": 4,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "Histórias e fábulas (regras de convivência na família)",
+      "conteudos": [
+        "Histórias, fábulas: personagens, características físicas das personagens, localização da acção no tempo e no espaço"
+      ],
+      "objectivos": [
+        "Ler histórias sobre amizade e ajuda mútua com entoação, pausa e ritmo adequados",
+        "Responder a questionários orais e escritos sobre textos",
+        "Identificar as personagens da história"
+      ],
+      "resultados": [],
+      "ch": 16,
+      "acs": null,
+      "at": null,
+      "semana_trim": 4
+    },
+    {
+      "semana": 5,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "Histórias e fábulas (regras de convivência na família)",
+      "conteudos": [
+        "Cópia; Ditado; Redacção",
+        "Tema Transversal: Regras de convivência na família (amizade e ajuda mútua)"
+      ],
+      "objectivos": [
+        "Indicar o momento e o lugar em que decorre a acção",
+        "Escrever cópias e ditados de frases e textos",
+        "Escrever pequenas composições (4 a 6 frases)"
+      ],
+      "resultados": [
+        "Lê e escreve textos narrativos sobre regras de convivência na família"
+      ],
+      "ch": 15,
+      "acs": null,
+      "at": null,
+      "semana_trim": 5
+    },
+    {
+      "semana": 6,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "Pedidos de permissão",
+      "conteudos": [
+        "Expressões para formular pedidos de permissão: Posso sair da mesa? / Posso ir brincar?",
+        "Expressões para aceitar ou recusar pedidos: Sim, podes. / Não, não podes.",
+        "Realização da 2ª ACS"
+      ],
+      "objectivos": [
+        "Formular pedidos de permissão em diferentes situações",
+        "Usar expressões para aceitar ou recusar pedidos",
+        "Avaliar o grau de assimilação da matéria dada"
+      ],
+      "resultados": [
+        "Expressa-se com cortesia para formular pedidos"
+      ],
+      "ch": 16,
+      "acs": "2ª ACS",
+      "at": null,
+      "semana_trim": 6
+    },
+    {
+      "semana": 7,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "Texto descritivo — A casa",
+      "conteudos": [
+        "Texto descritivo: a casa (materiais de construção, profissões)"
+      ],
+      "objectivos": [
+        "Ler textos descritivos com entoação, pausa e ritmo adequados",
+        "Identificar materiais necessários para a construção de uma casa"
+      ],
+      "resultados": [],
+      "ch": 16,
+      "acs": null,
+      "at": null,
+      "semana_trim": 7
+    },
+    {
+      "semana": 8,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "Texto descritivo — A casa",
+      "conteudos": [
+        "Cópia; Ditado; Redacção"
+      ],
+      "objectivos": [
+        "Mencionar profissões relacionadas com a construção de uma casa",
+        "Descrever, oralmente e por escrito, a sua casa"
+      ],
+      "resultados": [],
+      "ch": 16,
+      "acs": null,
+      "at": null,
+      "semana_trim": 8
+    },
+    {
+      "semana": 9,
+      "trimestre": 1,
+      "unidade_num": "I",
+      "unidade_nome": "FAMÍLIA",
+      "tema": "Texto descritivo — A casa",
+      "conteudos": [
+        "Tema transversal: Regras de conservação da casa",
+        "Funcionamento da língua: família de palavras (casinha, casarão, casota); Sinonímia; Divisão silábica",
+        "Realização da 3ª ACS"
+      ],
+      "objectivos": [
+        "Elaborar frases com palavras da mesma família de casa",
+        "Usar palavras sinónimas em frases orais e escritas",
+        "Dividir palavras em sílabas",
+        "Avaliar o grau de assimilação da matéria dada"
+      ],
+      "resultados": [
+        "Lê e escreve textos descritivos sobre materiais de construção, profissões e regras de conservação da casa",
+        "Expressa-se, oralmente, com correcção, usando família de palavras e a sinonímia"
+      ],
+      "ch": 15,
+      "acs": "3ª ACS",
+      "at": null,
+      "semana_trim": 9
+    },
+    {
+      "semana": 10,
+      "trimestre": 1,
+      "unidade_num": "II",
+      "unidade_nome": "ESCOLA",
+      "tema": "Textos narrativos — Regras de conduta na escola",
+      "conteudos": [
+        "Textos Narrativos: assunto principal do texto; personagens"
+      ],
+      "objectivos": [
+        "Ler histórias sobre regras de conduta na escola com entoação, pausa e ritmo adequados",
+        "Indicar o assunto principal de uma história"
+      ],
+      "resultados": [],
+      "ch": 16,
+      "acs": null,
+      "at": null,
+      "semana_trim": 10
+    },
+    {
+      "semana": 11,
+      "trimestre": 1,
+      "unidade_num": "II",
+      "unidade_nome": "ESCOLA",
+      "tema": "Textos narrativos — Regras de conduta na escola",
+      "conteudos": [
+        "Cópia; Ditado; Redacção"
+      ],
+      "objectivos": [
+        "Identificar as personagens da história",
+        "Escrever pequenas composições (4 a 6 frases)"
+      ],
+      "resultados": [],
+      "ch": 16,
+      "acs": null,
+      "at": null,
+      "semana_trim": 11
+    },
+    {
+      "semana": 12,
+      "trimestre": 1,
+      "unidade_num": "II",
+      "unidade_nome": "ESCOLA",
+      "tema": "Textos narrativos — Regras de conduta na escola",
+      "conteudos": [
+        "Tema transversal: Regras de conduta na escola (ajuda mútua/solidariedade/respeito/assiduidade/pontualidade)",
+        "Realização da 4ª ACS"
+      ],
+      "objectivos": [
+        "Usar palavras da mesma família de escola",
+        "Identificar palavras com significados contrários",
+        "Avaliar o grau de assimilação da matéria dada"
+      ],
+      "resultados": [],
+      "ch": 16,
+      "acs": "4ª ACS",
+      "at": null,
+      "semana_trim": 12
+    },
+    {
+      "semana": 13,
+      "trimestre": 1,
+      "unidade_num": "II",
+      "unidade_nome": "ESCOLA",
+      "tema": "Textos narrativos — Regras de conduta na escola",
+      "conteudos": [
+        "Funcionamento da Língua: Antonímia; Sinais de pontuação (ponto final, de interrogação e de exclamação); Uso da letra maiúscula (início das frases, depois de um ponto, nos nomes próprios)",
+        "Preparação para a Avaliação Trimestral – AT",
+        "Realização da Avaliação Trimestral – AT"
+      ],
+      "objectivos": [
+        "Construir frases aplicando as regras de pontuação",
+        "Usar a letra maiúscula obedecendo regras",
+        "Rever a matéria dada ao longo do trimestre",
+        "Consolidar o nível de conhecimentos adquiridos"
+      ],
+      "resultados": [
+        "Lê e escreve textos narrativos sobre regras de conduta na escola",
+        "Expressa-se, oralmente, com correcção, usando a antonímia e letras maiúsculas"
+      ],
+      "ch": 9,
+      "acs": null,
+      "at": "Preparação e Realização da AT",
+      "semana_trim": 13
+    },
+    {
+      "semana": 14,
+      "trimestre": 1,
+      "unidade_num": "",
+      "unidade_nome": "",
+      "tema": "Correcção e entrega da Avaliação Trimestral",
+      "conteudos": [
+        "Correcção e entrega da AT",
+        "Acerto de notas"
+      ],
+      "objectivos": [
+        "Corrigir os erros cometidos na AT",
+        "Avaliar o nível de assimilação da matéria do trimestre"
+      ],
+      "resultados": [
+        "Avalia o nível de assimilação da matéria aprendida ao longo do trimestre"
+      ],
+      "ch": 16,
+      "acs": null,
+      "at": "Correcção e entrega da AT",
+      "semana_trim": 14
+    }
+  ]
+    }
